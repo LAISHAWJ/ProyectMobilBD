@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ProyectMobilBD.DataAccess;
 
 namespace ProyectMobilBD
 {
@@ -15,8 +16,13 @@ namespace ProyectMobilBD
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+
+            var dbContext = new EmpleadoDbContext();
+            dbContext.Database.EnsureCreated();
+            dbContext.Dispose();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
