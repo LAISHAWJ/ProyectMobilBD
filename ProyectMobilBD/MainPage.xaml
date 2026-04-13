@@ -2,87 +2,163 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:ProyectMobilBD.DTOs"
-             x:Class="ProyectMobilBD.MainPage">
+             x:Class="ProyectMobilBD.MainPage"
+             BackgroundColor="#F0F4F8">
 
-    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="15" Margin="15">
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="16" Margin="16">
 
-        <Button Grid.Row="0" Text="Nuevo Empleado" Command="{Binding CrearCommand}"/>
-        <Label Grid.Row="1" Text="Lista de empleados" FontSize="Subtitle"/>
+        <!-- Botón principal -->
+        <Button Grid.Row="0"
+                Text="+ Nuevo Empleado"
+                Command="{Binding CrearCommand}"
+                BackgroundColor="#1E3A5F"
+                TextColor="White"
+                FontAttributes="Bold"
+                FontSize="15"
+                CornerRadius="10"
+                HeightRequest="48"
+                HorizontalOptions="FillAndExpand"/>
+
+        <!-- Título de sección -->
+        <Label Grid.Row="1"
+               Text="Lista de Empleados"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="#1E3A5F"
+               Margin="2,0,0,0"/>
+
         <ScrollView Grid.Row="2">
-
             <CollectionView ItemsSource="{Binding ListaEmpleado}">
-
                 <CollectionView.ItemsLayout>
-
-                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
-                    
+                    <LinearItemsLayout ItemSpacing="12" Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
-
                 <CollectionView.ItemTemplate>
-
                     <DataTemplate x:DataType="model:EmpleadoDTO">
-                        <Border Padding="10,5" HorizontalOptions="FillAndExpand">
+
+                        <Border Padding="16,14"
+                                BackgroundColor="White"
+                                HorizontalOptions="FillAndExpand">
                             <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="5"/>
+                                <RoundRectangle CornerRadius="12"/>
                             </Border.StrokeShape>
+                            <Border.Stroke>#DDE4EE</Border.Stroke>
 
-                            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto"  ColumnDefinitions="Auto,*">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                                  ColumnDefinitions="28,*,Auto"
+                                  RowSpacing="0">
 
-                                <Label Grid.Row="0" Grid.Column="0" Text="Nombre Completo:" FontAttributes="Bold"/>
-                                <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="{Binding NombreCompleto}"/>
+                                <!-- Ícono + Nombre Completo -->
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="👤"
+                                       FontSize="14"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding NombreCompleto}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E3A5F"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,0,10"/>
 
-                                <Label Grid.Row="1" Grid.Column="0" Text="Correo:" FontAttributes="Bold"/>
-                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Text="{Binding Correo}"/>
+                                <!-- Separador visual -->
+                                <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                         HeightRequest="1"
+                                         BackgroundColor="#EEF2F7"
+                                         Margin="0,0,0,10"/>
 
-                                <Label Grid.Row="2" Grid.Column="0" Text="Sueldo:" FontAttributes="Bold"/>
-                                <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Text="{Binding Sueldo, StringFormat='{0:C}'}"/>
+                                <!-- Correo -->
+                                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1"
+                                       Text="✉"
+                                       FontSize="13"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="1"
+                                       Text="Correo"
+                                       FontSize="12"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="2" Grid.Column="2"
+                                       Text="{Binding Correo}"
+                                       FontSize="13"
+                                       TextColor="#2D3A50"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,0,6"/>
 
-                                <Label Grid.Row="3" Grid.Column="0" Text="FechaContrato:" FontAttributes="Bold"/>
-                                <Label Grid.Row="3" Grid.Column="1" HorizontalOptions="End" Text="{Binding FechaContrato, StringFormat='{0:dd/Mm/yyyy}'}"/>
+                                <!-- Sueldo -->
+                                <Label Grid.Row="3" Grid.Column="0"
+                                       Text="💰"
+                                       FontSize="13"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="3" Grid.Column="1"
+                                       Text="Sueldo"
+                                       FontSize="12"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="3" Grid.Column="2"
+                                       Text="{Binding Sueldo, StringFormat='{0:C}'}"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#1A7A4A"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,0,6"/>
 
-                                <Label Grid.Row="4" Grid.Column="0" Padding="0,15,10,5" Text="Editar" TextColor="Blue">
+                                <!-- Fecha contrato -->
+                                <Label Grid.Row="4" Grid.Column="0"
+                                       Text="📅"
+                                       FontSize="13"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="4" Grid.Column="1"
+                                       Text="Contrato"
+                                       FontSize="12"
+                                       TextColor="#6B7A99"
+                                       VerticalOptions="Center"/>
+                                <Label Grid.Row="4" Grid.Column="2"
+                                       Text="{Binding FechaContrato, StringFormat='{0:dd/MM/yyyy}'}"
+                                       FontSize="13"
+                                       TextColor="#2D3A50"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,0,10"/>
 
+                                <!-- Botones Editar / Eliminar -->
+                                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                                       Text="Editar"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#1E3A5F"
+                                       Padding="0,6,0,0">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.EditarCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                        CommandParameter="{Binding}"/>
-                                        
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.EditarCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                            CommandParameter="{Binding}"/>
                                     </Label.GestureRecognizers>
-                                    
                                 </Label>
 
-                                <Label Grid.Row="4" Grid.Column="1" Padding="10,15,0,5" Text="Eliminar" TextColor="Red">
-
+                                <Label Grid.Row="5" Grid.Column="2"
+                                       Text="Eliminar"
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       TextColor="#C0392B"
+                                       HorizontalOptions="End"
+                                       Padding="0,6,0,0">
                                     <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.EliminarCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                        CommandParameter="{Binding}"/>
-
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.EliminarCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                            CommandParameter="{Binding}"/>
                                     </Label.GestureRecognizers>
-
                                 </Label>
-
 
                             </Grid>
-
                         </Border>
-                        
-                        
+
                     </DataTemplate>
-                    
-                    
                 </CollectionView.ItemTemplate>
-                
-                
-                
             </CollectionView>
-            
-            
-            
-            
-            
-            
         </ScrollView>
 
-
     </Grid>
-
 </ContentPage>

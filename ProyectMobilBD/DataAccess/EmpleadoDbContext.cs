@@ -17,8 +17,8 @@ namespace ProyectMobilBD.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Empleados>(entity =>
-
             {
+                entity.ToTable("Empleados");
                 entity.HasKey(e => e.IdEmpleado);
                 entity.Property(e => e.IdEmpleado).IsRequired().ValueGeneratedOnAdd();
 
