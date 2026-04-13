@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProyectMobilBD.DataAccess;
+using ProyectMobilBD.ViewModels;
+using ProyectMobilBD.Views;
 
 namespace ProyectMobilBD
 {
@@ -20,6 +22,17 @@ namespace ProyectMobilBD
             var dbContext = new EmpleadoDbContext();
             dbContext.Database.EnsureCreated();
             dbContext.Dispose();
+
+
+            builder.Services.AddDbContext<EmpleadoDbContext>();
+
+            builder.Services.AddTransient<EmpleadoPage>();
+            builder.Services.AddTransient<EmpleadoViewModel>();
+
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+
+            Routing.RegisterRoute(nameof(EmpleadoPage), typeof(EmpleadoPage));
 
 #if DEBUG
             builder.Logging.AddDebug();
